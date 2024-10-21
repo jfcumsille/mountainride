@@ -30,6 +30,8 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+gem "dartsass-rails", "~> 0.5.1"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
@@ -42,13 +44,18 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem 'activeadmin'
-gem 'devise'
-gem 'pundit'
+gem "activeadmin"
+gem "devise"
+gem "pundit"
+
+gem "active_model_serializers"
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+  gem "factory_bot_rails"
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "rspec"
+  gem "rspec-rails"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
@@ -58,14 +65,13 @@ group :development, :test do
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
+  gem "annotate"
+  gem "ruby-lsp-rails"
 end
 
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
+  gem "database_cleaner-active_record"
+  gem "rspec_junit_formatter", "0.2.2"
+  gem "shoulda-matchers", "~> 4.5", require: false
+  gem "test-prof", "~> 1.0"
 end
-
-gem "dartsass-rails", "~> 0.5.1"
