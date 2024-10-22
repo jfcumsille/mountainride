@@ -14,7 +14,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BookCollection, type: :model do
+RSpec.describe BookCollection do
   subject { build(:book_collection) }
 
   describe 'validations' do

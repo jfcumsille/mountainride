@@ -9,6 +9,7 @@ AllCops:
     - "db/**/*"
     - "bin/**/*"
     - "node_modules/**/*"
+    - "config/**/*"
   TargetRubyVersion: 3.2.2
 Rails:
   Enabled: true

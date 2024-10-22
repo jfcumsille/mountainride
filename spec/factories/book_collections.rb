@@ -14,6 +14,6 @@
 
 FactoryBot.define do
   factory :book_collection do
-    name { "Harry Potter" }
+    name { 'Harry Potter' }
   end
 end
