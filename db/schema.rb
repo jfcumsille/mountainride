@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_10_21_232028) do
+ActiveRecord::Schema[8.1].define(version: 2024_10_22_234126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -38,6 +38,13 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_21_232028) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "real_name", null: false
+    t.string "public_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "book_collections", force: :cascade do |t|
