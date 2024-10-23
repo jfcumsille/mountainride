@@ -18,6 +18,8 @@ class BookCollection < ApplicationRecord
 
   before_save :titleize_attribute
 
+  has_many :books, -> { order(order: :asc) }, dependent: :destroy, inverse_of: :book_collection
+
   private
 
   def titleize_attribute

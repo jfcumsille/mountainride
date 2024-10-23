@@ -22,6 +22,10 @@ RSpec.describe BookCollection do
     it { is_expected.to validate_uniqueness_of(:name) }
   end
 
+  describe 'associations' do
+    it { is_expected.to have_many(:books) }
+  end
+
   describe 'factory' do
     it { is_expected.to be_valid }
   end
