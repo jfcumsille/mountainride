@@ -19,7 +19,7 @@
 FactoryBot.define do
   factory :book do
     title { "Harry Potter and the Philosopher's Stone" }
-    order { 1 }
+    sequence(:order) { |n| n }
     book_collection { association(:book_collection) }
   end
 end

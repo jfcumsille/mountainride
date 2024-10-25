@@ -513,6 +513,7 @@ DEPENDENCIES
   puma (>= 5.0)
   pundit
   rails!
+  responders
   rspec
   rspec-rails
   rspec_junit_formatter (= 0.2.2)

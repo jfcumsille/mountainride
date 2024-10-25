@@ -47,6 +47,7 @@ gem 'devise'
 gem 'pundit'
 
 gem 'active_model_serializers'
+gem 'responders'
 
 group :development, :test do
   gem 'factory_bot_rails'

@@ -13,4 +13,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  # 
+  namespace 'api', default: { format: :json } do
+    namespace 'v1' do
+      resources :book_collections, only: %i[index show]
+    end
+  end
 end
