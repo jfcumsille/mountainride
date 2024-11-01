@@ -55,7 +55,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'rubocop', '~> 1.55', '>= 1.55.1'
+  gem 'rubocop', '~> 1.68'
   gem 'rubocop-performance'
   gem 'rubocop-rails', '~> 2.20', '>= 2.20.2'
   gem 'rubocop-rspec', '~> 2.23', '>= 2.23.2'
