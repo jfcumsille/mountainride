@@ -72,6 +72,6 @@ end
 group :test do
   gem 'database_cleaner-active_record'
   gem 'rspec_junit_formatter', '0.2.2'
-  gem 'shoulda-matchers', '~> 4.5', require: false
+  gem 'shoulda-matchers', '~> 6.4', require: false
   gem 'test-prof', '~> 1.0'
 end
