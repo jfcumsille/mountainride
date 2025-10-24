@@ -22,13 +22,13 @@ default: &default
 
 development:
   <<: *default
-  database: odl_back_development
+  database: mountainride_back_development
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: odl_back
+  #username: mountainride_back
 
   # The password associated with the PostgreSQL role (username).
   #password:
@@ -56,7 +56,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: odl_back_test
+  database: mountainride_back_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,18 +81,18 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: odl_back_production
-    username: odl_back
-    password: <%= ENV["ODL_BACK_DATABASE_PASSWORD"] %>
+    database: mountainride_back_production
+    username: mountainride_back
+    password: <%= ENV["MOUNTAINRIDE_BACK_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: odl_back_production_cache
+    database: mountainride_back_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: odl_back_production_queue
+    database: mountainride_back_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: odl_back_production_cable
+    database: mountainride_back_production_cable
     migrations_paths: db/cable_migrate
