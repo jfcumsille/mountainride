@@ -64,6 +64,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'foreman'
   gem 'ruby-lsp-rails'
 end
 

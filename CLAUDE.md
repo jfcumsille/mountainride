@@ -350,7 +350,7 @@ bundle exec rubocop
 bundle exec rubocop -A  # Auto-correct
 
 # Dev server
-bin/dev  # Puma + Tailwind watch
+bin/dev  # Puma only (Tailwind watch no funciona en Procfile)
 
 # DB
 rails db:migrate
@@ -360,9 +360,20 @@ rails db:reset
 # Console
 rails c
 
-# Assets
-rails tailwindcss:build
-rails tailwindcss:watch
+# Assets (IMPORTANTE: Compilar manualmente cuando cambies estilos)
+rails tailwindcss:build  # Compila estilos principales (application.tailwind.css -> builds/tailwind.css)
+bundle exec tailwindcss build -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css -c ./config/tailwind.config.js  # Compila estilos de ActiveAdmin
+
+# Si cambias estilos de ActiveAdmin, SIEMPRE ejecuta:
+bundle exec tailwindcss build -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css -c ./config/tailwind.config.js
+
+# Para desarrollo activo con auto-rebuild (ejecutar en terminales separadas):
+# Terminal 1:
+rails s
+# Terminal 2:
+rails tailwindcss:build && rails tailwindcss:watch
+# Terminal 3:
+bundle exec tailwindcss build -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css -c ./config/tailwind.config.js --watch
 ```
 
 ## Decisiones de Arquitectura Clave
@@ -417,6 +428,28 @@ rails assets:clobber
 rails tailwindcss:build
 ```
 
+### ActiveAdmin sin estilos
+ActiveAdmin 4.0 beta usa Tailwind CSS (no SASS). Si los estilos no se ven:
+```bash
+# 1. Verificar que active_admin.css tenga directivas Tailwind
+cat app/assets/stylesheets/active_admin.css
+# Debe contener:
+# @tailwind base;
+# @tailwind components;
+# @tailwind utilities;
+
+# 2. Compilar CSS de ActiveAdmin
+bundle exec tailwindcss build -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css -c ./config/tailwind.config.js
+
+# 3. Precompilar assets (si es necesario)
+rails assets:precompile
+
+# 4. Verificar que el archivo se generó correctamente
+ls -lh app/assets/builds/active_admin.css  # Debe ser ~62KB, no bytes
+
+# 5. Reiniciar servidor y hard refresh en navegador (Cmd+Shift+R)
+```
+
 ### Devise redirect loops
 Verificar `authenticate_user!` en `ApplicationController` y overrides
 
@@ -434,6 +467,19 @@ No implementar nada de la wishlist sin antes confirmar con el equipo:
 
 ---
 
-**Última actualización**: 2024-10-24
+**Última actualización**: 2025-10-25
 **Mantenido por**: Equipo MountainRide
 **Versión**: MVP v1.0
+
+## Notas Importantes sobre el Entorno de Desarrollo
+
+### bin/dev y Procfile.dev
+- **Procfile.dev simplificado**: Solo corre el web server (Puma)
+- **Problema conocido**: El proceso `css_admin` (watch de ActiveAdmin CSS) se sale inmediatamente en Procfile
+- **Solución**: Compilar CSS de ActiveAdmin manualmente cuando sea necesario
+- **Alternativa**: Para desarrollo activo, usar 3 terminales separadas (ver "Comandos Comunes" arriba)
+
+### Foreman
+- Necesita `foreman` gem en Gemfile (grupo :development)
+- `bin/dev` usa `bundle exec foreman` (no solo `foreman`)
+- Si falla, verificar: `bundle list | grep foreman`

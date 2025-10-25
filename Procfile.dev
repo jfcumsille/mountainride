@@ -1,3 +1,1 @@
 web: bin/rails server
-css: bin/rails tailwindcss:watch
-css_admin: bundle exec tailwindcss -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css -c ./config/tailwind.config.js --watch
