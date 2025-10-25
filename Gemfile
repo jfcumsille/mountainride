@@ -15,7 +15,7 @@ gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem 'tailwindcss-rails'
+gem 'tailwindcss-rails', '~> 2.7'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
@@ -28,8 +28,6 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 gem 'solid_cable'
 gem 'solid_cache'
 gem 'solid_queue'
-
-gem 'dartsass-rails', '~> 0.5.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
