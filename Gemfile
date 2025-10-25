@@ -42,7 +42,7 @@ gem 'thruster', require: false
 
 # gem "image_processing", "~> 1.2"
 
-gem 'activeadmin'
+gem 'activeadmin', '4.0.0.beta17'
 gem 'devise'
 gem 'pundit'
 
