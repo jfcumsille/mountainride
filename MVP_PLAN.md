@@ -39,39 +39,42 @@ Lanzar la versión más simple posible que permita publicar y descubrir viajes a
 
 ### 1.1 Setup inicial
 - [x] Verificar Gemfile tiene: devise, tailwindcss-rails, pundit
-- [ ] Generar configuración Devise: `rails generate devise:install`
-- [ ] Generar vistas Devise: `rails generate devise:views`
+- [x] Generar configuración Devise: `rails generate devise:install`
+- [x] Generar vistas Devise: `rails generate devise:views`
 - [ ] Configurar locale a español (`config.i18n.default_locale = :es`)
 - [ ] Configurar zona horaria Chile: `config.time_zone = 'America/Santiago'`
 
-### 1.2 Modelo User
+### 1.2 Modelo User ✅
 ```bash
 rails generate devise User first_name:string last_name:string phone:string
 rails db:migrate
 ```
 
 **Validaciones en User:**
-- `validates :first_name, :last_name, presence: true`
-- `validates :phone, format: { with: /\A569\d{8}\z/ }, presence: true`
-- Helper: `def full_name; "#{first_name} #{last_name}"; end`
-- Asociación: `has_many :trips, dependent: :destroy`
+- [x] `validates :first_name, :last_name, presence: true`
+- [x] `validates :phone, format: { with: /\A569\d{8}\z/ }, presence: true`
+- [x] Helper: `def full_name; "#{first_name} #{last_name}"; end`
+- [x] Asociación: `has_many :trips, dependent: :destroy`
+- [x] Factory: FactoryBot con datos realistas
+- [x] Specs: 5/6 passing (1 pending Trip)
 
-### 1.3 Modelo SkiCenter
+### 1.3 Modelo SkiCenter ✅
 ```bash
 rails generate model SkiCenter name:string slug:string description:text address:string latitude:decimal longitude:decimal website_url:string position:integer active:boolean
 rails db:migrate
 ```
 
 **Validaciones:**
-- `validates :name, :slug, presence: true`
-- `validates :slug, uniqueness: true, format: { with: /\A[a-z0-9-]+\z/ }`
-- `validates :latitude, :longitude, numericality: true, allow_nil: true`
+- [x] `validates :name, :slug, presence: true`
+- [x] `validates :slug, uniqueness: true, format: { with: /\A[a-z0-9-]+\z/ }`
+- [x] `validates :latitude, :longitude, numericality: true, allow_nil: true`
 
 **Scopes:**
-- `scope :active, -> { where(active: true) }`
-- `scope :ordered, -> { order(:position, :name) }`
+- [x] `scope :active, -> { where(active: true) }`
+- [x] `scope :ordered, -> { order(:position, :name) }`
 
 **Callbacks:**
+- [x] Auto-generate slug from name
 ```ruby
 before_validation :generate_slug, if: -> { slug.blank? }
 
@@ -83,11 +86,11 @@ end
 ```
 
 **Índices:**
-```ruby
-add_index :ski_centers, :slug, unique: true
-add_index :ski_centers, :active
-add_index :ski_centers, :position
-```
+- [x] `add_index :ski_centers, :slug, unique: true`
+- [x] `add_index :ski_centers, :active`
+- [x] `add_index :ski_centers, :position`
+- [x] Factory: FactoryBot con datos de centros chilenos
+- [x] Specs: 10/11 passing (1 pending Trip)
 
 ### 1.4 Modelo Trip
 ```bash
