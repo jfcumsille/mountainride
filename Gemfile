@@ -56,7 +56,7 @@ group :development, :test do
   gem 'rubocop', '~> 1.68'
   gem 'rubocop-performance'
   gem 'rubocop-rails', '~> 2.27'
-  gem 'rubocop-rspec', '~> 2.23', '>= 2.23.2'
+  gem 'rubocop-rspec', '~> 3.7'
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
